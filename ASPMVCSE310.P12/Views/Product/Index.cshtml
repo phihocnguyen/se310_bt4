@@ -1,0 +1,68 @@
+﻿@model IEnumerable<ASPMVCSE310.P12.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<form method="get">
+    <p>
+        Đơn giá Min: <input id="Text1" name="txtMin" type="text" />
+        Đơn giá Max: <input id="Text2" name="txtMax" type="text" />
+        <input id="Submit1" type="submit" value="submit"/>
+    </p>
+</form>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CatalogId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Picture)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UnitPrice)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CatalogId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Picture)
+            <img src="~/Pictures/@Url.Content(item.Picture)"
+                 alt="Image"
+                 width="100"
+                 height="100" />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UnitPrice)
+        </td>
+        <td>
+            @Html.ActionLink("Chỉnh sửa", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Chi tiết", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Xóa", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
